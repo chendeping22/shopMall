@@ -30,11 +30,11 @@
                 <ul>
                   <li v-for="item in goodsList" :key="item.productId">
                     <div class="pic">
-                      <a href="#"><img v-lazy="'static/'+item.prodcutImg" alt=""></a>
+                      <a href="#"><img v-lazy="'static/'+item.productImage" alt=""></a>
                     </div>
                     <div class="main">
                       <div class="name">{{item.productName}}</div>
-                      <div class="price">{{item.prodcutPrice}}</div>
+                      <div class="price">{{item.salePrice}}</div>
                       <div class="btn-area">
                         <a href="javascript:;" class="btn btn--m">加入购物车</a>
                       </div>
@@ -95,10 +95,10 @@ export default {
   methods:{
       getGoodsList(){
           this.$http.get('/goods')
-          .then((result)=>{
-              console.log(result);
-              let res=result.data.data;
-              this.goodsList=res.result;
+          .then((res)=>{ 
+              let data=res.data;
+              console.log(data);
+              this.goodsList=data.result.list;
           })
       },
       showFilterPop(){
